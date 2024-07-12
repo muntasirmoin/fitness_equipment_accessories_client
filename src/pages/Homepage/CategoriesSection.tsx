@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CategoriesSection = () => {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (category: string) => {
+    navigate("/products", { state: { category: category } });
+  };
+
   return (
     <div className="flex flex-col my-5">
       <hr
@@ -20,20 +26,19 @@ const CategoriesSection = () => {
         <div className="card glass w-80">
           <figure>
             <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              src="https://i.ibb.co/61VKQS1/s1.jpg"
               alt="car!"
+              style={{ width: 350, height: 300 }}
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Life hack</h2>
-
             <div className="card-actions justify-end">
-              <Link
-                to="/"
+              <button
                 className="btn bg-[rgb(210,45,59)] text-white px-4 py-2 rounded-md hover:bg-[#420c16] transition-colors duration-300"
+                onClick={() => handleLinkClick("Strength")}
               >
-                Select
-              </Link>
+                Strength
+              </button>
             </div>
           </div>
         </div>
@@ -42,20 +47,19 @@ const CategoriesSection = () => {
         <div className="card glass w-80">
           <figure>
             <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              src="https://i.ibb.co/nj0vfkZ/a6.jpg"
               alt="car!"
+              style={{ width: 350, height: 300 }}
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Life hack</h2>
-
             <div className="card-actions justify-end">
-              <Link
-                to="/"
+              <button
                 className="btn bg-[rgb(210,45,59)] text-white px-4 py-2 rounded-md hover:bg-[#420c16] transition-colors duration-300"
+                onClick={() => handleLinkClick("MultiGym")}
               >
-                Select
-              </Link>
+                MultiGym
+              </button>
             </div>
           </div>
         </div>
@@ -64,20 +68,19 @@ const CategoriesSection = () => {
         <div className="card glass w-80">
           <figure>
             <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+              src="https://i.ibb.co/RTRzK9m/a9.jpg"
               alt="car!"
+              style={{ width: 350, height: 300 }}
             />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">Life hack</h2>
-
             <div className="card-actions justify-end">
-              <Link
-                to="/"
+              <button
                 className="btn bg-[rgb(210,45,59)] text-white px-4 py-2 rounded-md hover:bg-[#420c16] transition-colors duration-300"
+                onClick={() => handleLinkClick("Treadmill")}
               >
-                Select
-              </Link>
+                Treadmill
+              </button>
             </div>
           </div>
         </div>

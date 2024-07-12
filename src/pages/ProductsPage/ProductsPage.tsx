@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import ProductsPageCard from "./ProductsPageCard";
 
 interface Product {
   _id?: string;
@@ -14,10 +15,14 @@ interface Product {
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const location = useLocation();
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+    if (location.state?.category) {
+      handleCategoryChange(location.state.category);
+    }
+  }, [location.state?.category]);
 
   const fetchProducts = async () => {
     try {
@@ -147,18 +152,6 @@ const ProductsPage = () => {
               <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                 <li className="mb-2">
                   <button
-                    onClick={() => handleCategoryChange("Cardio")}
-                    className={`btn btn-sm ${
-                      filters.categories.includes("Cardio")
-                        ? "btn-neutral"
-                        : "btn-outline"
-                    }`}
-                  >
-                    Cardio
-                  </button>
-                </li>
-                <li>
-                  <button
                     onClick={() => handleCategoryChange("Strength")}
                     className={`btn btn-sm ${
                       filters.categories.includes("Strength")
@@ -167,6 +160,30 @@ const ProductsPage = () => {
                     }`}
                   >
                     Strength
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCategoryChange("MultiGym")}
+                    className={`btn btn-sm ${
+                      filters.categories.includes("MultiGym")
+                        ? "btn-neutral"
+                        : "btn-outline"
+                    }`}
+                  >
+                    MultiGym
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCategoryChange("Treadmill")}
+                    className={`btn btn-sm ${
+                      filters.categories.includes("Treadmill")
+                        ? "btn-neutral"
+                        : "btn-outline"
+                    }`}
+                  >
+                    Treadmill
                   </button>
                 </li>
                 {/* Add more category buttons as needed */}
@@ -257,6 +274,14 @@ const ProductsPage = () => {
             </table>
           </div>
         </div>
+        {/* card here  */}
+        {/* <div>
+          <div className="grid grid-cols-3 gap-4 border-2 border-gray-200  p-2 mb-2">
+            {products.map((product) => (
+              <ProductsPageCard key={product._id} product={product} />
+            ))}
+          </div>
+        </div> */}
       </div>
     </div>
   );

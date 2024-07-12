@@ -1,14 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   const location = useLocation();
 
   const getLinkClasses = (path: string) => {
-    const baseClasses = "py-2 px-4 rounded transition-colors duration-200";
+    const baseClasses =
+      "py-2 px-4 rounded text-white transition-colors duration-200";
     const hoverClasses = "hover:bg-[rgb(209,31,46)] hover:text-white";
     const activeClasses =
       location.pathname === path ? "bg-[rgb(209,31,46)] text-white" : "";
+
     return `${baseClasses} ${hoverClasses} ${activeClasses}`;
   };
 
