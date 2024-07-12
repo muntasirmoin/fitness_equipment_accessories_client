@@ -5,7 +5,7 @@ const FeaturedProductsCard = ({ product }) => {
   return (
     <div className={`card max-w-sm rounded overflow-hidden shadow-lg`}>
       <figure>
-        <img src={product?.photoURL} alt="image" className="w-full h-40" />
+        <img src={product?.imageUrl} alt="image" className="w-full h-40" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.name}</h2>

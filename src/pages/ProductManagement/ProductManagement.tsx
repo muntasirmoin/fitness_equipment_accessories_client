@@ -249,6 +249,7 @@ const ProductManagement: React.FC = () => {
             >
               <thead>
                 <tr>
+                  <th className="border text-center px-4 py-2">#</th>
                   <th className="border text-center px-4 py-2">Name</th>
                   <th className="border text-center px-4 py-2">Price</th>
                   <th className="border  text-center px-4 py-2">Category</th>
@@ -257,8 +258,9 @@ const ProductManagement: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
+                {products.map((product, index) => (
                   <tr key={product._id}>
+                    <td className="border px-4 py-2">{index + 1}</td>
                     <td className="border  text-center px-4 py-2">
                       {product.name}
                     </td>
@@ -341,9 +343,9 @@ const ProductManagement: React.FC = () => {
                     }
                   >
                     <option value="">Select a category</option>
-                    <option value="Category 1">Category 1</option>
-                    <option value="Category 2">Category 2</option>
-                    <option value="Category 3">Category 3</option>
+                    <option value="Strength">Strength</option>
+                    <option value="MultiGym">MultiGym</option>
+                    <option value="Treadmill">Treadmill</option>
                   </select>
                 </div>
                 <div className="w-1/2">

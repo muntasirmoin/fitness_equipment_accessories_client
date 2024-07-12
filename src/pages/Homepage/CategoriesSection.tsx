@@ -4,7 +4,15 @@ import { Link } from "react-router-dom";
 const CategoriesSection = () => {
   return (
     <div className="flex flex-col my-5">
-      <h2 className="text-2xl font-bold text-center mb-5">
+      <hr
+        style={{
+          border: "none",
+          height: "2px",
+          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+          margin: "20px 0", // Adjust margin as needed
+        }}
+      />
+      <h2 className="text-2xl font-bold text-green-500 text-center mb-5">
         Categories Section
       </h2>
       <div className="flex flex-wrap justify-between gap-4 my-5">

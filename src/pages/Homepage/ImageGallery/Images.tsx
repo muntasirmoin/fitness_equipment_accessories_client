@@ -16,7 +16,14 @@ const Images: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <hr />
+      <hr
+        style={{
+          border: "none",
+          height: "2px",
+          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+          margin: "20px 0", // Adjust margin as needed
+        }}
+      />
       <h1 className="text-3xl font-bold text-center mb-4 text-green-500">
         Image Gallery
       </h1>

@@ -96,10 +96,7 @@ const ProductsDetails = () => {
       </div>
       <div className="card lg:card-side bg-base-100 shadow-xl">
         <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-            alt="Album"
-          />
+          <img src={imageUrl} alt="Album" />
         </figure>
         <div className="card-body">
           {/* 1 */}

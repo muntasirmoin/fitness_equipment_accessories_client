@@ -43,8 +43,16 @@ const FeaturedProducts = () => {
 
   return (
     <>
+      <hr
+        style={{
+          border: "none",
+          height: "2px",
+          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+          margin: "20px 0", // Adjust margin as needed
+        }}
+      />
       <div className="flex flex-col my-5">
-        <h2 className="text-2xl font-bold text-center mb-5">
+        <h2 className="text-2xl font-bold text-green-500 text-center mb-5">
           Featured Products
         </h2>
 
