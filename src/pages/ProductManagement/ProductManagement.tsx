@@ -219,175 +219,207 @@ const ProductManagement: React.FC = () => {
         <br />
         <br /> <br />
       </div>
-      <div className="max-w-screen-lg mx-auto p-4 border border-black mb-2">
-        <h1 className="text-2xl text-center font-bold mb-4">
-          Product Management
-        </h1>
-        <hr />
-        <div className="mb-4 border border-slate-600 p-2">
-          <h2 className="text-xl text-center font-bold mb-2">Product List</h2>
-          <table className="table w-full " style={{ border: "1px solid #ccc" }}>
-            <thead>
-              <tr>
-                <th className="border text-center px-4 py-2">Name</th>
-                <th className="border text-center px-4 py-2">Price</th>
-                <th className="border  text-center px-4 py-2">Category</th>
-                <th className="border text-center  px-4 py-2">Update</th>
-                <th className="border text-center  px-4 py-2">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td className="border  text-center px-4 py-2">
-                    {product.name}
-                  </td>
-                  <td className="border text-center  px-4 py-2">
-                    {product.price}
-                  </td>
-                  <td className="border text-center  px-4 py-2">
-                    {product.category}
-                  </td>
-                  <td className="border  text-center px-4 py-2">
-                    <button
-                      className="btn btn-sm btn-outline btn-info mr-2"
-                      onClick={() => handleEditProductForm(product)}
-                    >
-                      Update
-                    </button>
-                  </td>
-                  <td className="border  text-center px-4 py-2">
-                    <button
-                      className="btn btn-sm btn-outline btn-error"
-                      onClick={() => handleDeleteProduct(product._id!)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+      <div
+        className="p-4"
+        style={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div className="max-w-screen-lg mx-auto p-4  mb-2">
+          <h1 className="font-bold text-4xl mb-2 text-center text-green-500">
+            Product Management
+          </h1>
+          <hr
+            style={{
+              border: "none",
+              height: "2px",
+              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+              margin: "20px 0", // Adjust margin as needed
+            }}
+          />
+          <div className="mb-4 p-2">
+            <h2 className="text-xl text-center font-bold mb-2 text-green-500">
+              Product List
+            </h2>
+            <table
+              className="table w-full "
+              style={{ border: "1px solid #ccc" }}
+            >
+              <thead>
+                <tr>
+                  <th className="border text-center px-4 py-2">Name</th>
+                  <th className="border text-center px-4 py-2">Price</th>
+                  <th className="border  text-center px-4 py-2">Category</th>
+                  <th className="border text-center  px-4 py-2">Update</th>
+                  <th className="border text-center  px-4 py-2">Delete</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {/*product form start  */}
-        <div className="mb-8 ">
-          <h2 className="text-xl text-center font-bold mb-2">
-            {editingProduct ? "Update Product Form" : "Add a Product"}{" "}
-          </h2>
-          <div className="border border-black p-2">
-            <div className="flex">
-              <div className="w-1/2 mr-4">
-                <label className="block mb-2">Name</label>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product._id}>
+                    <td className="border  text-center px-4 py-2">
+                      {product.name}
+                    </td>
+                    <td className="border text-center  px-4 py-2">
+                      {product.price}
+                    </td>
+                    <td className="border text-center  px-4 py-2">
+                      {product.category}
+                    </td>
+                    <td className="border  text-center px-4 py-2">
+                      <button
+                        className="btn btn-sm btn-outline btn-info mr-2"
+                        onClick={() => handleEditProductForm(product)}
+                      >
+                        Update
+                      </button>
+                    </td>
+                    <td className="border  text-center px-4 py-2">
+                      <button
+                        className="btn btn-sm btn-outline btn-error"
+                        onClick={() => handleDeleteProduct(product._id!)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {/*product form start  */}
+          <hr
+            style={{
+              border: "none",
+              height: "2px",
+              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+              margin: "20px 0", // Adjust margin as needed
+            }}
+          />
+          <div className="mb-8 ">
+            <h2 className="text-xl text-center text-green-500 font-bold mb-2">
+              {editingProduct ? "Update Product Form" : "Add a Product"}{" "}
+            </h2>
+            <div className="border border-black p-2">
+              <div className="flex">
+                <div className="w-1/2 mr-4">
+                  <label className="block mb-2">Name</label>
+                  <input
+                    type="text"
+                    className="input input-bordered w-full"
+                    value={newProduct.name}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, name: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="w-1/2">
+                  <label className="block mb-2">Price</label>
+                  <input
+                    type="number"
+                    className="input input-bordered w-full"
+                    value={newProduct.price}
+                    onChange={(e) =>
+                      setNewProduct({
+                        ...newProduct,
+                        price: parseFloat(e.target.value),
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="flex mt-4">
+                <div className="w-1/2 mr-4">
+                  <label className="block mb-2">Category</label>
+                  <select
+                    className="input input-bordered w-full"
+                    value={newProduct.category}
+                    onChange={(e) =>
+                      setNewProduct({ ...newProduct, category: e.target.value })
+                    }
+                  >
+                    <option value="">Select a category</option>
+                    <option value="Category 1">Category 1</option>
+                    <option value="Category 2">Category 2</option>
+                    <option value="Category 3">Category 3</option>
+                  </select>
+                </div>
+                <div className="w-1/2">
+                  <label className="block mb-2">Stock</label>
+                  <input
+                    type="number"
+                    className="input input-bordered w-full"
+                    value={newProduct.stock}
+                    onChange={(e) =>
+                      setNewProduct({
+                        ...newProduct,
+                        stock: parseInt(e.target.value, 10),
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className="mt-4">
+                <label className="block mb-2">Description</label>
+                <textarea
+                  className="textarea textarea-bordered w-full"
+                  value={newProduct.description}
+                  onChange={(e) =>
+                    setNewProduct({
+                      ...newProduct,
+                      description: e.target.value,
+                    })
+                  }
+                ></textarea>
+              </div>
+              <div className="mt-4">
+                <label className="block mb-2">Image URL</label>
                 <input
                   type="text"
                   className="input input-bordered w-full"
-                  value={newProduct.name}
+                  value={newProduct.imageUrl}
                   onChange={(e) =>
-                    setNewProduct({ ...newProduct, name: e.target.value })
+                    setNewProduct({ ...newProduct, imageUrl: e.target.value })
                   }
                 />
               </div>
-              <div className="w-1/2">
-                <label className="block mb-2">Price</label>
-                <input
-                  type="number"
-                  className="input input-bordered w-full"
-                  value={newProduct.price}
-                  onChange={(e) =>
-                    setNewProduct({
-                      ...newProduct,
-                      price: parseFloat(e.target.value),
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className="flex mt-4">
-              <div className="w-1/2 mr-4">
-                <label className="block mb-2">Category</label>
-                <select
-                  className="input input-bordered w-full"
-                  value={newProduct.category}
-                  onChange={(e) =>
-                    setNewProduct({ ...newProduct, category: e.target.value })
-                  }
-                >
-                  <option value="">Select a category</option>
-                  <option value="Category 1">Category 1</option>
-                  <option value="Category 2">Category 2</option>
-                  <option value="Category 3">Category 3</option>
-                </select>
-              </div>
-              <div className="w-1/2">
-                <label className="block mb-2">Stock</label>
-                <input
-                  type="number"
-                  className="input input-bordered w-full"
-                  value={newProduct.stock}
-                  onChange={(e) =>
-                    setNewProduct({
-                      ...newProduct,
-                      stock: parseInt(e.target.value, 10),
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className="mt-4">
-              <label className="block mb-2">Description</label>
-              <textarea
-                className="textarea textarea-bordered w-full"
-                value={newProduct.description}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, description: e.target.value })
-                }
-              ></textarea>
-            </div>
-            <div className="mt-4">
-              <label className="block mb-2">Image URL</label>
-              <input
-                type="text"
-                className="input input-bordered w-full"
-                value={newProduct.imageUrl}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, imageUrl: e.target.value })
-                }
-              />
-            </div>
-            <div className="mt-4">
-              {/* <button className="btn btn-primary mr-2" onClick={handleSaveProduct}>
+              <div className="mt-4">
+                {/* <button className="btn btn-primary mr-2" onClick={handleSaveProduct}>
             {editingProduct ? "Update Product" : "Add Product"}
           </button> */}
-              {editingProduct ? (
-                <button
-                  className="btn btn-success mr-2 font-bold text-white"
-                  onClick={() => handleEditProduct(newProduct)} //need to add
-                  //   onClick={handleSaveProduct}
-                >
-                  Update Product
-                </button>
-              ) : (
-                <button
-                  className="btn btn-success mr-2 font-bold text-white"
-                  onClick={handleAddProduct}
-                >
-                  Create a New Product
-                </button>
-              )}
-              {editingProduct && (
-                <button
-                  className="btn btn-error font-bold text-white"
-                  onClick={handleCancelEdit}
-                >
-                  Cancel
-                </button>
-              )}
+                {editingProduct ? (
+                  <button
+                    className="btn btn-success mr-2 font-bold text-white"
+                    onClick={() => handleEditProduct(newProduct)} //need to add
+                    //   onClick={handleSaveProduct}
+                  >
+                    Update Product
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-success mr-2 font-bold text-white"
+                    onClick={handleAddProduct}
+                  >
+                    Create a New Product
+                  </button>
+                )}
+                {editingProduct && (
+                  <button
+                    className="btn btn-error font-bold text-white"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/*product form end  */}
-      </div>
+          {/*product form end  */}
+        </div>
+      </div>{" "}
     </div>
   );
 };

@@ -89,70 +89,100 @@ const ProductDetails = () => {
       <div className="pt-12">
         <br />
       </div>
-      <div className="overflow-x-auto overflow-auto">
-        <div className="top-0 left-0 w-full max-w-screen-xl mx-auto bg-white shadow-lg mt-1">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th className="border px-4 py-2">#</th>
-                <th className="border px-4 py-2">Image</th>
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Category</th>
-                <th className="border px-4 py-2">Price</th>
-                <th className="border px-4 py-2">Stock</th>
-                <th className="border px-4 py-2">Description</th>
-                <th className="border px-4 py-2">Quantity</th>
-                <th className="border px-4 py-2">Add To Cart</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product, index) => (
-                <tr key={product._id}>
-                  <td className="border px-4 py-2">{index + 1}</td>
-                  <td className="border  text-center px-4 py-2">
-                    <img
-                      src={product.imageUrl}
-                      alt={product.name}
-                      className="h-12 w-12"
-                    />
-                  </td>
-                  <td className="border text-center px-4 py-2">
-                    {product.name}
-                  </td>
-                  <td className="border text-center px-4 py-2">
-                    {product.category}
-                  </td>
-                  <td className="border text-center px-4 py-2">
-                    ${product.price}
-                  </td>
-                  <td className="border text-center px-4 py-2">
-                    {product.stock}
-                  </td>
-                  <td className="border text-center px-4 py-2">
-                    {product.description}
-                  </td>
-                  <td className="border text-center px-4 py-2">1</td>
-                  <td className="border text-center px-4 py-2">
-                    {product.stock === 0 ? (
-                      <button
-                        className="btn btn-sm btn-outline btn-info"
-                        disabled
-                      >
-                        Out of Stock
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-sm btn-outline btn-info"
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        Add to Cart
-                      </button>
-                    )}
-                  </td>
+      <div
+        className="p-4"
+        style={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div className="overflow-x-auto overflow-auto">
+          <h1 className="font-bold text-4xl mb-2 text-center text-green-500">
+            Products
+          </h1>
+          <div className="top-0 left-0 w-full max-w-screen-xl mx-auto bg-white shadow-lg mt-1">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    #
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Image
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Name
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Category
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Price
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Stock
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Description
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Quantity
+                  </th>
+                  <th className="border text-gray-800 text-center px-4 py-2">
+                    Add To Cart
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.map((product, index) => (
+                  <tr key={product._id}>
+                    <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border  text-center px-4 py-2">
+                      <img
+                        src={product.imageUrl}
+                        alt={product.name}
+                        className="h-12 w-12"
+                      />
+                    </td>
+                    <td className="border text-center px-4 py-2">
+                      {product.name}
+                    </td>
+                    <td className="border text-center px-4 py-2">
+                      {product.category}
+                    </td>
+                    <td className="border text-center px-4 py-2">
+                      ${product.price}
+                    </td>
+                    <td className="border text-center px-4 py-2">
+                      {product.stock}
+                    </td>
+                    <td className="border text-center px-4 py-2">
+                      {product.description}
+                    </td>
+                    <td className="border text-center px-4 py-2">1</td>
+                    <td className="border text-center px-4 py-2">
+                      {product.stock === 0 ? (
+                        <button
+                          className="btn btn-sm btn-outline btn-info"
+                          disabled
+                        >
+                          Out of Stock
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-sm btn-outline btn-info"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          Add to Cart
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

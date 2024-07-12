@@ -103,139 +103,159 @@ const ProductsPage = () => {
       <div className="pt-12">
         <br />
       </div>
-      <div className="flex flex-col my-5">
-        <div className="flex flex-wrap justify-between">
-          {/* Search bar */}
-          <div>
-            <input
-              type="text"
-              value={filters.search}
-              onChange={handleSearchChange}
-              placeholder="Search by product name..."
-              className="border border-gray-300 px-2 py-1 rounded-md  btn btn-success font-bold text-white btn-outline"
-            />
-          </div>
-
-          {/* Category filters */}
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-success font-bold text-white btn-outline"
-            >
-              Select Category
+      <div
+        className="p-4"
+        style={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div className="flex flex-col my-5">
+          <h2 className="font-bold text-2xl mb-4 text-center text-green-500">
+            Products
+          </h2>
+          <hr
+            style={{
+              border: "none",
+              height: "2px",
+              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+              margin: "20px 0", // Adjust margin as needed
+            }}
+          />
+          <div className="flex flex-wrap justify-between">
+            {/* Search bar */}
+            <div>
+              <input
+                type="text"
+                value={filters.search}
+                onChange={handleSearchChange}
+                placeholder="Search by product name..."
+                className="border border-gray-300 px-2 py-1 rounded-md  btn btn-success font-bold text-white btn-outline"
+              />
             </div>
-            <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-              <li className="mb-2">
-                <button
-                  onClick={() => handleCategoryChange("Cardio")}
-                  className={`btn btn-sm ${
-                    filters.categories.includes("Cardio")
-                      ? "btn-neutral"
-                      : "btn-outline"
-                  }`}
-                >
-                  Cardio
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleCategoryChange("Strength")}
-                  className={`btn btn-sm ${
-                    filters.categories.includes("Strength")
-                      ? "btn-neutral"
-                      : "btn-outline"
-                  }`}
-                >
-                  Strength
-                </button>
-              </li>
-              {/* Add more category buttons as needed */}
-            </ul>
-          </div>
 
-          {/* Sorting options */}
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              className="btn btn-success font-bold text-white btn-outline"
-            >
-              Sort by Price
+            {/* Category filters */}
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-success font-bold text-white btn-outline"
+              >
+                Select Category
+              </div>
+              <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li className="mb-2">
+                  <button
+                    onClick={() => handleCategoryChange("Cardio")}
+                    className={`btn btn-sm ${
+                      filters.categories.includes("Cardio")
+                        ? "btn-neutral"
+                        : "btn-outline"
+                    }`}
+                  >
+                    Cardio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleCategoryChange("Strength")}
+                    className={`btn btn-sm ${
+                      filters.categories.includes("Strength")
+                        ? "btn-neutral"
+                        : "btn-outline"
+                    }`}
+                  >
+                    Strength
+                  </button>
+                </li>
+                {/* Add more category buttons as needed */}
+              </ul>
             </div>
-            <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-              <li className="mb-2">
-                <button
-                  onClick={() => handlePriceSort("asc")}
-                  className="btn btn-sm btn-outline"
-                >
-                  Price Low to High
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handlePriceSort("desc")}
-                  className="btn btn-sm btn-outline"
-                >
-                  Price High to Low
-                </button>
-              </li>
-            </ul>
-          </div>
 
-          {/* Clear Filter button */}
-          <div>
-            <button
-              onClick={clearFilters}
-              className="btn btn-error font-bold text-white btn-outline"
-            >
-              Clear Filters
-            </button>
+            {/* Sorting options */}
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                className="btn btn-success font-bold text-white btn-outline"
+              >
+                Sort by Price
+              </div>
+              <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                <li className="mb-2">
+                  <button
+                    onClick={() => handlePriceSort("asc")}
+                    className="btn btn-sm btn-outline"
+                  >
+                    Price Low to High
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handlePriceSort("desc")}
+                    className="btn btn-sm btn-outline"
+                  >
+                    Price High to Low
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Clear Filter button */}
+            <div>
+              <button
+                onClick={clearFilters}
+                className="btn btn-error font-bold text-white btn-outline"
+              >
+                Clear Filters
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Table of products */}
-      <div className="overflow-x-auto overflow-auto">
-        <div className="top-0 left-0 w-full max-w-screen-xl mx-auto bg-white shadow-lg mt-1">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th className="border px-4 py-2">#</th>
-                <th className="border px-4 py-2">Image</th>
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Category</th>
-                <th className="border px-4 py-2">Price</th>
-                <th className="border px-4 py-2">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProducts.map((product, index) => (
-                <tr key={product._id}>
-                  <td className="border px-4 py-2">{index + 1}</td>
-                  <td className="border px-4 py-2">
-                    <img
-                      src={product.imageUrl}
-                      alt={product.name}
-                      className="h-12 w-12"
-                    />
-                  </td>
-                  <td className="border px-4 py-2">{product.name}</td>
-                  <td className="border px-4 py-2">{product.category}</td>
-                  <td className="border px-4 py-2">{product.price}</td>
-                  <td className="border px-4 py-2">
-                    <Link to={`/product-details/${product._id}`}>
-                      <button
-                        className="btn btn-sm btn-outline btn-info"
-                        style={{ fontSize: "10px" }}
-                      >
-                        Details
-                      </button>
-                    </Link>
-                  </td>
+        {/* Table of products */}
+        <div className="overflow-x-auto overflow-auto">
+          <div className="top-0 left-0 w-full max-w-screen-xl mx-auto bg-white shadow-lg mt-1">
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th className="border px-4 py-2">#</th>
+                  <th className="border px-4 py-2">Image</th>
+                  <th className="border px-4 py-2">Name</th>
+                  <th className="border px-4 py-2">Category</th>
+                  <th className="border px-4 py-2">Price</th>
+                  <th className="border px-4 py-2">Details</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredProducts.map((product, index) => (
+                  <tr key={product._id}>
+                    <td className="border px-4 py-2">{index + 1}</td>
+                    <td className="border px-4 py-2">
+                      <img
+                        src={product.imageUrl}
+                        alt={product.name}
+                        className="h-12 w-12"
+                      />
+                    </td>
+                    <td className="border px-4 py-2">{product.name}</td>
+                    <td className="border px-4 py-2">{product.category}</td>
+                    <td className="border px-4 py-2">{product.price}</td>
+                    <td className="border px-4 py-2">
+                      <Link to={`/product-details/${product._id}`}>
+                        <button
+                          className="btn btn-sm btn-outline btn-info"
+                          style={{ fontSize: "10px" }}
+                        >
+                          Details
+                        </button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

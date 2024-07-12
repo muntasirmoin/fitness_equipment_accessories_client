@@ -5,19 +5,6 @@ import { RootState } from "../../store";
 import Swal from "sweetalert2";
 import { RESET_STATE } from "../../store/cartSlice";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  stockQuantity: number;
-  imageUrl: string;
-}
-
-interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
 const CheckOutPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
@@ -33,7 +20,7 @@ const CheckOutPage: React.FC = () => {
     dispatch(RESET_STATE());
   };
 
-  // start
+  // COllect stock data from state adn update
   async function fetchUpdateProduct(productId: string, updatedStock: number) {
     try {
       console.log("fetchUpdateProduct", productId, updatedStock);
@@ -63,8 +50,6 @@ const CheckOutPage: React.FC = () => {
     }
   }
 
-  // end
-
   const handlePlaceOrder = async () => {
     const cartProductUser = {
       name,
@@ -82,14 +67,7 @@ const CheckOutPage: React.FC = () => {
       fetchUpdateProduct(productId, quantity);
     });
 
-    // const products = cartItems.map((item) => item.product);
-    // products.forEach((product) => {
-    //   console.log(`Product`, product._id, product.stock);
-    //   fetchUpdateProduct(product._id, product.stock);
-    // });
-    // console.log("product", products);
-
-    // console.log(cartProductUser);
+    // add to cart User And Cart Data
     if (paymentMethod === "Cash on Delivery") {
       try {
         const response = await fetch("http://localhost:3000/payment", {
@@ -103,7 +81,7 @@ const CheckOutPage: React.FC = () => {
         if (!response.ok) {
           throw new Error("Failed to save cartProductUser");
         }
-        // Show success alert
+
         Swal.fire({
           icon: "success",
           title: "Order",
@@ -139,101 +117,125 @@ const CheckOutPage: React.FC = () => {
       <div className="pt-12">
         <br />
       </div>
-      <div className="mt-8">
-        <h2 className="text-xl font-bold">Order Summary</h2>
-        <table className="table w-full mt-4">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Image</th>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Price</th>
-              <th className="border px-4 py-2">Quantity</th>
-              <th className="border px-4 py-2">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.product._id}>
-                <td className="border px-4 py-2">
-                  <img
-                    src={item.product.imageUrl}
-                    alt={item.product.name}
-                    className="h-12 w-12"
-                  />
-                </td>
-                <td className="border px-4 py-2">{item.product.name}</td>
-                <td className="border px-4 py-2">
-                  ${item.product.price.toFixed(2)}
-                </td>
-                <td className="border px-4 py-2">{item.quantity}</td>
-                <td className="border px-4 py-2">
-                  ${(item.product.price * item.quantity).toFixed(2)}
-                </td>
+      <div
+        className="p-4"
+        style={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div className="mt-8">
+          <h2 className="font-bold text-4xl mb-2 text-center text-green-500">
+            Order Summary
+          </h2>
+          <table className="table w-full mt-4">
+            <thead>
+              <tr>
+                <th className="border text-gray-800 px-4 py-2">Image</th>
+                <th className="border text-gray-800 px-4 py-2">Name</th>
+                <th className="border text-gray-800 px-4 py-2">Price</th>
+                <th className="border text-gray-800 px-4 py-2">Quantity</th>
+                <th className="border text-gray-800 px-4 py-2">Total</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <h3 className="text-xl font-bold mt-4">
-          Total: ${totalPrice.toFixed(2)}
-        </h3>
-      </div>
-      <div className="max-w-screen-md mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Checkout</h1>
-        <div className="mb-4">
-          <label className="block mb-2">Name</label>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+            </thead>
+            <tbody>
+              {cartItems.map((item) => (
+                <tr key={item.product._id}>
+                  <td className="border px-4 py-2">
+                    <img
+                      src={item.product.imageUrl}
+                      alt={item.product.name}
+                      className="h-12 w-12"
+                    />
+                  </td>
+                  <td className="border px-4 py-2">{item.product.name}</td>
+                  <td className="border px-4 py-2">
+                    ${item.product.price.toFixed(2)}
+                  </td>
+                  <td className="border px-4 py-2">{item.quantity}</td>
+                  <td className="border px-4 py-2">
+                    ${(item.product.price * item.quantity).toFixed(2)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <h3 className="text-xl text-end mb-2 text-green-600 font-bold mt-4">
+            Total: ${totalPrice.toFixed(2)}
+          </h3>
         </div>
-        <div className="mb-4">
-          <label className="block mb-2">Email</label>
-          <input
-            type="email"
-            className="input input-bordered w-full"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Phone</label>
-          <input
-            type="tel"
-            className="input input-bordered w-full"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Delivery Address</label>
-          <textarea
-            className="textarea textarea-bordered w-full"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Payment Method</label>
-          <div>
-            <label className="mr-4">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="Cash on Delivery"
-                checked={paymentMethod === "Cash on Delivery"}
-                onChange={(e) => setPaymentMethod(e.target.value)}
-              />
-              Cash on Delivery
-            </label>
-            {/* Add other payment methods here */}
+        <hr
+          style={{
+            border: "none",
+            height: "2px",
+            backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
+            margin: "20px 0", // Adjust margin as needed
+          }}
+        />
+        <div className="max-w-screen-md mx-auto p-4">
+          <h1 className="font-bold text-4xl mb-2 text-center text-green-500">
+            Shipping address
+          </h1>
+          <div className="mb-4">
+            <label className="block mb-2">Name</label>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
-        </div>
-        <button className="btn btn-primary mt-4" onClick={handlePlaceOrder}>
-          Place Order
-        </button>
-      </div>{" "}
+          <div className="mb-4">
+            <label className="block mb-2">Email</label>
+            <input
+              type="email"
+              className="input input-bordered w-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2">Phone</label>
+            <input
+              type="tel"
+              className="input input-bordered w-full"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2">Delivery Address</label>
+            <textarea
+              className="textarea textarea-bordered w-full"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2">Payment Method</label>
+            <div>
+              <label className="mr-4">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="Cash on Delivery"
+                  checked={paymentMethod === "Cash on Delivery"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                Cash on Delivery
+              </label>
+              {/* Add other payment methods here */}
+            </div>
+          </div>
+          <button
+            className="btn btn-success btn-outline mt-4"
+            onClick={handlePlaceOrder}
+          >
+            Place Order
+          </button>
+        </div>{" "}
+      </div>
     </div>
   );
 };

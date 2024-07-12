@@ -5,59 +5,86 @@ const BenefitsSection = () => {
   return (
     <>
       <div className="flex flex-col my-5">
-        <h2 className="text-2xl font-bold text-center mb-5">Benefit Section</h2>
+        <hr />
+        <h2 className="text-2xl font-bold text-center mb-5 text-green-500">
+          Benefit Section
+        </h2>
         <div className="flex flex-wrap justify-center">
           <div className="carousel carousel-end rounded-box">
             {/* 1 */}
             <div className="card card-side bg-base-100 shadow-xl">
               <figure>
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                  src="https://i.ibb.co/MRrmrs9/chest-pres.webp"
                   alt="Movie"
+                  style={{ width: 550, height: 300 }}
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title">CHEST PRESS MACHINE</h2>
+                <p>
+                  If you’re looking for easy to use exercise equipment that
+                  targets your upper body, then you should try out the chest
+                  press machine.
+                </p>
               </div>
             </div>
             {/* 2 */}
             <div className="card card-side bg-base-100 shadow-xl">
               <figure>
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                  src="https://i.ibb.co/Bf1cqY4/cybex-vr2-chestpress-1-1.jpg"
                   alt="Movie"
+                  style={{ width: 550, height: 300 }}
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title">MUSCLES USED</h2>
+                <p>
+                  Using a chest press, you get specifically target and work out
+                  your chest, biceps, back, deltoids and shoulders.{" "}
+                </p>
               </div>
             </div>
-            {/* 3 */}
+          </div>
+        </div>
+
+        {/* 2 */}
+        <div className="flex flex-wrap justify-center">
+          <div className="carousel carousel-end rounded-box">
+            {/* 1 */}
             <div className="card card-side bg-base-100 shadow-xl">
               <figure>
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                  src="https://i.ibb.co/zmVfsKS/buge-biceps-curl.jpg"
                   alt="Movie"
+                  style={{ width: 550, height: 300 }}
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title">CURL BENCH</h2>
+                <p>
+                  f you want to specifically focus on pumping up those biceps,
+                  then you can perform isolated movements with a preacher curl
+                  bench.
+                </p>
               </div>
             </div>
-            {/* 4 */}
-            <div className="card card-side bg-base-100 shadow-xl">
+            {/* 2 */} <hr />
+            <div className="card card-side bg-base-100 shadow-xl mt-5">
               <figure>
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+                  src="https://i.ibb.co/s6vDrZx/olympic-flat-bench-600x600.jpg"
                   alt="Movie"
+                  style={{ width: 550, height: 300 }}
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">New movie is released!</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <h2 className="card-title"> BENCH PRESS</h2>
+                <p>
+                  The bench press is a popular type of gym equipment, especially
+                  for those just starting to get into weight lifting.
+                </p>
               </div>
             </div>
           </div>

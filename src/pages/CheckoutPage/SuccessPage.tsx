@@ -7,7 +7,6 @@ const SuccessPage = () => {
         <br />
       </div>
       <div className="">
-        {/* <h2 className="text-xl font-bold">Order Summary</h2> */}
         <div className="card lg:card-side bg-base-100 shadow-xl">
           <figure>
             <img

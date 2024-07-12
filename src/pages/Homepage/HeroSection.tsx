@@ -21,7 +21,7 @@ const HeroSection = () => {
             Every rep counts, every effort matters
           </p>
           <Link
-            to="/"
+            to="/product-details"
             className="btn bg-[rgb(210,45,59)] text-white px-4 py-2 rounded-md hover:bg-[#420c16] transition-colors duration-300"
           >
             Buy Product

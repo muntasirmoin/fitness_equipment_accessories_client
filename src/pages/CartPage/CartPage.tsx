@@ -83,83 +83,94 @@ const CartPage: React.FC = () => {
       <div className="pt-12">
         <br />
       </div>
-      <div className="max-w-screen-xl mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th className="border px-4 py-2">Image</th>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Price</th>
-              <th className="border px-4 py-2">Quantity</th>
-              <th className="border px-4 py-2">Total</th>
-              <th className="border px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.product._id}>
-                <td className="border px-4 py-2">
-                  <img
-                    src={item.product.imageUrl}
-                    alt={item.product.name}
-                    className="h-12 w-12"
-                  />
-                </td>
-                <td className="border px-4 py-2">{item.product.name}</td>
-                <td className="border px-4 py-2">
-                  ${item.product.price.toFixed(2)}
-                </td>
-                <td className="border px-4 py-2">
-                  <div className="flex items-center">
-                    <button
-                      className="btn btn-sm btn-outline"
-                      onClick={() => handleDecreaseQuantity(item.product._id)}
-                      disabled={item.quantity === 0}
-                    >
-                      -
-                    </button>
-                    <span className="mx-2">{item.quantity}</span>
-                    <button
-                      className="btn btn-sm btn-outline"
-                      onClick={() => handleIncreaseQuantity(item.product._id)}
-                      disabled={item.quantity === item.product.stock}
-                    >
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td className="border px-4 py-2">
-                  ${(item.product.price * item.quantity).toFixed(2)}
-                </td>
-                <td className="border px-4 py-2">
-                  <button
-                    className="btn btn-sm btn-outline btn-error"
-                    onClick={() => handleRemoveItem(item.product._id)}
-                  >
-                    Remove
-                  </button>
-                </td>
+      <div
+        className="p-4"
+        style={{
+          border: "1px solid black",
+          backgroundColor: "white",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        <div className="max-w-screen-xl mx-auto p-4">
+          <h1 className="font-bold text-4xl mb-5 text-center text-green-500">
+            Shopping Cart
+          </h1>
+          <table className="table w-full">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Image</th>
+                <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Price</th>
+                <th className="border px-4 py-2">Quantity</th>
+                <th className="border px-4 py-2">Total</th>
+                <th className="border px-4 py-2">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="mt-4">
-          <h2 className="text-xl font-bold">
-            Total Price: ${totalPrice.toFixed(2)}
-          </h2>
-          <button
-            className="btn btn-sm btn-outline btn-success mt-2 font-bold"
-            // style={{ fontSize: "10px" }}
-            onClick={handleCheckout}
-            disabled={
-              cartItems.length === 0 ||
-              cartItems.some((item) => item.quantity > item.product.stock) ||
-              cartItems.some((item) => item.quantity === 0)
-            }
-          >
-            Proceed to Checkout
-          </button>
+            </thead>
+            <tbody>
+              {cartItems.map((item) => (
+                <tr key={item.product._id}>
+                  <td className="border px-4 py-2">
+                    <img
+                      src={item.product.imageUrl}
+                      alt={item.product.name}
+                      className="h-12 w-12"
+                    />
+                  </td>
+                  <td className="border px-4 py-2">{item.product.name}</td>
+                  <td className="border px-4 py-2">
+                    ${item.product.price.toFixed(2)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="flex items-center">
+                      <button
+                        className="btn btn-sm btn-outline"
+                        onClick={() => handleDecreaseQuantity(item.product._id)}
+                        disabled={item.quantity === 0}
+                      >
+                        -
+                      </button>
+                      <span className="mx-2">{item.quantity}</span>
+                      <button
+                        className="btn btn-sm btn-outline"
+                        onClick={() => handleIncreaseQuantity(item.product._id)}
+                        disabled={item.quantity === item.product.stock}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    ${(item.product.price * item.quantity).toFixed(2)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    <button
+                      className="btn btn-sm btn-outline btn-error"
+                      onClick={() => handleRemoveItem(item.product._id)}
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="mt-4">
+            <h2 className="text-xl font-bold">
+              Total Price: ${totalPrice.toFixed(2)}
+            </h2>
+            <button
+              className="btn btn-sm btn-outline btn-success mt-2 font-bold"
+              // style={{ fontSize: "10px" }}
+              onClick={handleCheckout}
+              disabled={
+                cartItems.length === 0 ||
+                cartItems.some((item) => item.quantity > item.product.stock) ||
+                cartItems.some((item) => item.quantity === 0)
+              }
+            >
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       </div>
     </div>
