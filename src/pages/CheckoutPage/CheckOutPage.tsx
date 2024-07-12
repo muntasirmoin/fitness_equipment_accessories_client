@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import Swal from "sweetalert2";
+import { RESET_STATE } from "../../store/cartSlice";
 
 interface Product {
   id: string;
@@ -18,6 +20,7 @@ interface CartItem {
 
 const CheckOutPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,12 +29,101 @@ const CheckOutPage: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const navigate = useNavigate();
 
-  const handlePlaceOrder = () => {
+  const handleResetState = () => {
+    dispatch(RESET_STATE());
+  };
+
+  // start
+  async function fetchUpdateProduct(productId: string, updatedStock: number) {
+    try {
+      console.log("fetchUpdateProduct", productId, updatedStock);
+      const response = await fetch(
+        `http://localhost:3000/products/update/${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ updatedStock }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedProduct = await response.json();
+        console.log("Product updated successfully:", updatedProduct);
+      } else {
+        console.error(
+          "Failed to update product:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  }
+
+  // end
+
+  const handlePlaceOrder = async () => {
+    const cartProductUser = {
+      name,
+      email,
+      phone,
+      address,
+      paymentMethod,
+      cartItems,
+    };
+
+    cartItems.forEach((item) => {
+      const productId = item.product._id;
+      const quantity = item.quantity;
+      // console.log(productId, quantity);
+      fetchUpdateProduct(productId, quantity);
+    });
+
+    // const products = cartItems.map((item) => item.product);
+    // products.forEach((product) => {
+    //   console.log(`Product`, product._id, product.stock);
+    //   fetchUpdateProduct(product._id, product.stock);
+    // });
+    // console.log("product", products);
+
+    // console.log(cartProductUser);
     if (paymentMethod === "Cash on Delivery") {
-      // Update stock logic here
-      cartItems.forEach((item) => (item.product.stock -= item.quantity));
-      // Clear cart logic here
-      navigate("/success");
+      try {
+        const response = await fetch("http://localhost:3000/payment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cartProductUser),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to save cartProductUser");
+        }
+        // Show success alert
+        Swal.fire({
+          icon: "success",
+          title: "Order",
+          text: "Ordered successfully!",
+        });
+
+        // updateCartItems(cartItems);
+        navigate("/success");
+        handleResetState();
+        console.log("Product saved successfully");
+      } catch (error) {
+        console.error("Error saving product:", error);
+
+        // Show error alert
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Failed to add product",
+        });
+      }
     } else {
       alert("Please select a payment method");
     }

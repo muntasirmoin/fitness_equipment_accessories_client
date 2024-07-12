@@ -58,10 +58,14 @@ const cartSlice = createSlice({
         }
       }
     },
+    RESET_STATE(state) {
+      // Reset the cart state to initial state
+      state.items = [];
+    },
   },
 });
 
-export const { addToCart, removeFromCart, updateCartQuantity } =
+export const { addToCart, removeFromCart, updateCartQuantity, RESET_STATE } =
   cartSlice.actions;
 
 export const selectCartItems = (state: RootState) => state.cart.items;

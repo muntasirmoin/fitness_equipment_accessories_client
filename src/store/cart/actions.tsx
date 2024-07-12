@@ -4,9 +4,13 @@ import {
   CartState,
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
+  RESET_STATE,
 } from "./types";
 
 // export const addToCart = createAction<Product>('cart/addToCart');
+export const resetState = () => ({
+  type: RESET_STATE,
+});
 export const addToCart = (item: CartItem) => ({
   type: ADD_TO_CART,
   payload: item,
@@ -62,6 +66,9 @@ const cartReducer = (state = initialState, action: any): CartState => {
           : item
       );
       return { ...state, items: updatedItems };
+
+    case RESET_STATE:
+      return initialState;
 
     default:
       return state;
