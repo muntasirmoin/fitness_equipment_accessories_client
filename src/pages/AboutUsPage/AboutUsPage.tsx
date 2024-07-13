@@ -105,6 +105,7 @@ const AboutUsPage = () => {
                   />
                 </figure>
                 <div className="card-body">
+                  <h2 className="card-title"> Arif</h2>
                   <h2 className="card-title"> Founder & CEO</h2>
                   <h2>
                     Visionary behind Gym Fitness Equipment and Accessories. With
@@ -126,6 +127,7 @@ const AboutUsPage = () => {
                   />
                 </figure>
                 <div className="card-body">
+                  <h2 className="card-title"> Jamil</h2>
                   <h2 className="card-title">Chief Operating Officer</h2>
                   <h2>
                     The daily operations at Gym Fitness Equipment and
@@ -148,6 +150,7 @@ const AboutUsPage = () => {
                   />
                 </figure>
                 <div className="card-body">
+                  <h2 className="card-title"> Rakib</h2>
                   <h2 className="card-title">Head of Product Development</h2>
                   <h2>
                     The product development team, focusing on innovation and
