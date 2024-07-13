@@ -1,5 +1,3 @@
-// ImageGallery.tsx
-
 import React from "react";
 
 const ImageGallery: React.FC<{ images: string[] }> = ({ images }) => {

@@ -14,12 +14,12 @@ const CategoriesSection = () => {
         style={{
           border: "none",
           height: "2px",
-          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-          margin: "20px 0", // Adjust margin as needed
+          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+          margin: "20px 0",
         }}
       />
       <h2 className="text-2xl font-bold text-green-500 text-center mb-5">
-        Categories Section
+        Categories
       </h2>
       <div className="flex flex-wrap justify-between gap-4 my-5">
         {/* Card 1 */}

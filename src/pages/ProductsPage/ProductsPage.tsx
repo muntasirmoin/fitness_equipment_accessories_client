@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ProductsPageCard from "./ProductsPageCard";
+import { Helmet } from "react-helmet-async";
 
 interface Product {
   _id?: string;
@@ -44,15 +45,12 @@ const ProductsPage = () => {
     }
   };
 
-  // State for managing products and filters
-
   const [filters, setFilters] = useState({
     search: "",
     categories: [] as string[],
     priceSort: null as null | "asc" | "desc",
   });
 
-  // Handlers for filtering and sorting
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters({ ...filters, search: e.target.value });
   };
@@ -77,16 +75,14 @@ const ProductsPage = () => {
     fetchProducts();
   };
 
-  // Filter products based on current filters
   const filteredProducts = products.filter((product) => {
-    // Filter by search keyword
     if (
       filters.search &&
       !product.name.toLowerCase().includes(filters.search.toLowerCase())
     ) {
       return false;
     }
-    // Filter by selected categories
+
     if (
       filters.categories.length > 0 &&
       !filters.categories.includes(product.category)
@@ -96,7 +92,6 @@ const ProductsPage = () => {
     return true;
   });
 
-  // Sort filtered products by price
   if (filters.priceSort === "asc") {
     filteredProducts.sort((a, b) => a.price - b.price);
   } else if (filters.priceSort === "desc") {
@@ -105,6 +100,9 @@ const ProductsPage = () => {
 
   return (
     <div className="mt-15 mb-5">
+      <Helmet>
+        <title>Products | FitZone</title>
+      </Helmet>
       <div className="pt-12">
         <br />
       </div>
@@ -124,8 +122,8 @@ const ProductsPage = () => {
             style={{
               border: "none",
               height: "2px",
-              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-              margin: "20px 0", // Adjust margin as needed
+              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+              margin: "20px 0",
             }}
           />
           <div className="flex flex-wrap justify-between">
@@ -186,7 +184,6 @@ const ProductsPage = () => {
                     Treadmill
                   </button>
                 </li>
-                {/* Add more category buttons as needed */}
               </ul>
             </div>
 
@@ -275,13 +272,38 @@ const ProductsPage = () => {
           </div>
         </div>
         {/* card here  */}
-        {/* <div>
-          <div className="grid grid-cols-3 gap-4 border-2 border-gray-200  p-2 mb-2">
-            {products.map((product) => (
-              <ProductsPageCard key={product._id} product={product} />
-            ))}
-          </div>
+
+        {/* <div className="grid grid-cols-3 gap-4 border-2 border-gray-200 p-2 mb-2">
+          {products.map((product) => (
+            <div
+              key={product._id}
+              className={`card max-w-sm rounded overflow-hidden shadow-lg`}
+            >
+              <figure>
+                <img
+                  src={product.imageUrl}
+                  alt="Product"
+                  className="w-full h-40"
+                />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{product.name}</h2>
+                <div className="card-actions justify-end">
+                  <Link to={`/product-details/${product._id}`}>
+                    <button
+                      className="btn btn-sm btn-outline btn-info"
+                      style={{ fontSize: "10px" }}
+                    >
+                      View Details
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
         </div> */}
+
+        {/* card end */}
       </div>
     </div>
   );

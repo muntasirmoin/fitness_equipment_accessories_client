@@ -9,12 +9,12 @@ const BenefitsSection = () => {
           style={{
             border: "none",
             height: "2px",
-            backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-            margin: "20px 0", // Adjust margin as needed
+            backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+            margin: "20px 0",
           }}
         />
         <h2 className="text-2xl font-bold text-center mb-5 text-green-500">
-          Benefit Section
+          Benefit
         </h2>
         <div className="flex flex-wrap justify-center">
           <div className="carousel carousel-end rounded-box">

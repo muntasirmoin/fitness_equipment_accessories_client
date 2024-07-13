@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import { CartItem, Product } from "../../store/cart/types";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
@@ -86,6 +87,9 @@ const ProductDetails = () => {
 
   return (
     <div className="mt-15 mb-5">
+      <Helmet>
+        <title>Product | FitZone</title>
+      </Helmet>
       <div className="pt-12">
         <br />
       </div>

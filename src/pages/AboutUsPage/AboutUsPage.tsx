@@ -1,8 +1,12 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const AboutUsPage = () => {
   return (
     <div className="mt-15 mb-5">
+      <Helmet>
+        <title>About | FitZone</title>
+      </Helmet>
       <div className="pt-12">
         <br />
       </div>
@@ -15,7 +19,7 @@ const AboutUsPage = () => {
         }}
       >
         <h2 className="font-bold text-4xl mb-2 text-center text-green-500">
-          History | Vision | Mission
+          About Us
         </h2>
         {/* vision,mission */}
         <div>

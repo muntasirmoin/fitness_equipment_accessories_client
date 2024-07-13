@@ -4,6 +4,7 @@ import { RootState } from "../../store";
 import { removeFromCart, updateCartQuantity } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const CartPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -80,6 +81,9 @@ const CartPage: React.FC = () => {
 
   return (
     <div className="mt-15 mb-5">
+      <Helmet>
+        <title>Cart | FitZone</title>
+      </Helmet>
       <div className="pt-12">
         <br />
       </div>

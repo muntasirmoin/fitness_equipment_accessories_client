@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import Swal from "sweetalert2";
 import { RESET_STATE } from "../../store/cartSlice";
+import { Helmet } from "react-helmet-async";
 
 const CheckOutPage: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -63,12 +64,19 @@ const CheckOutPage: React.FC = () => {
     cartItems.forEach((item) => {
       const productId = item.product._id;
       const quantity = item.quantity;
-      // console.log(productId, quantity);
+
       fetchUpdateProduct(productId, quantity);
     });
 
     // add to cart User And Cart Data
-    if (paymentMethod === "Cash on Delivery") {
+    // if(name !== '' && email  !== ''   && phone !== '' && address !== '')
+    if (
+      paymentMethod === "Cash on Delivery" &&
+      name !== "" &&
+      email !== "" &&
+      phone !== "" &&
+      address !== ""
+    ) {
       try {
         const response = await fetch("http://localhost:3000/payment", {
           method: "POST",
@@ -88,14 +96,12 @@ const CheckOutPage: React.FC = () => {
           text: "Ordered successfully!",
         });
 
-        // updateCartItems(cartItems);
         navigate("/success");
         handleResetState();
         console.log("Product saved successfully");
       } catch (error) {
         console.error("Error saving product:", error);
 
-        // Show error alert
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -103,7 +109,7 @@ const CheckOutPage: React.FC = () => {
         });
       }
     } else {
-      alert("Please select a payment method");
+      alert("Please select  payment method & FillUp shipping Address properly");
     }
   };
 
@@ -114,6 +120,9 @@ const CheckOutPage: React.FC = () => {
 
   return (
     <div className="mt-15 mb-5">
+      <Helmet>
+        <title>CheCkOut | FitZone</title>
+      </Helmet>
       <div className="pt-12">
         <br />
       </div>
@@ -169,8 +178,8 @@ const CheckOutPage: React.FC = () => {
           style={{
             border: "none",
             height: "2px",
-            backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-            margin: "20px 0", // Adjust margin as needed
+            backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+            margin: "20px 0",
           }}
         />
         <div className="max-w-screen-md mx-auto p-4">
@@ -225,7 +234,6 @@ const CheckOutPage: React.FC = () => {
                 />
                 Cash on Delivery
               </label>
-              {/* Add other payment methods here */}
             </div>
           </div>
           <button

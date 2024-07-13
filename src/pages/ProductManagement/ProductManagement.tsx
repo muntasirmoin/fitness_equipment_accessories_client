@@ -1,11 +1,12 @@
 // main code
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 interface Product {
   _id?: string;
 
-  name: string;
+  name?: string;
   price: number;
   description: string;
   imageUrl: string;
@@ -57,6 +58,12 @@ const ProductManagement: React.FC = () => {
     setEditingProduct(product);
 
     setNewProduct({ ...product });
+
+    Swal.fire({
+      icon: "warning",
+      title: "Go to Below and fille the Update Product Form",
+      // text: "Are you sure you want to do Update?",
+    });
   };
 
   const handleEditProduct = async (product: Product) => {
@@ -84,7 +91,14 @@ const ProductManagement: React.FC = () => {
         title: "Success",
         text: "Product updated successfully!",
       });
-
+      setNewProduct({
+        name: "",
+        price: 0,
+        description: "",
+        imageUrl: "",
+        category: "",
+        stock: 0,
+      });
       console.log("Product updated successfully");
     } catch (error) {
       console.error("Error updating product:", error);
@@ -95,8 +109,6 @@ const ProductManagement: React.FC = () => {
         title: "Error",
         text: "Failed to update product",
       });
-
-      // Handle error state or show user feedback
     }
   };
 
@@ -213,8 +225,24 @@ const ProductManagement: React.FC = () => {
     });
   };
 
+  const handleEmptyFrom = () => {
+    setEditingProduct(null);
+    setNewProduct({
+      //   id: "",
+      name: "",
+      price: 0,
+      description: "",
+      imageUrl: "",
+      category: "",
+      stock: 0,
+    });
+  };
+
   return (
     <div className="">
+      <Helmet>
+        <title>Product Management | FitZone</title>
+      </Helmet>
       <div className="">
         <br />
         <br /> <br />
@@ -296,8 +324,8 @@ const ProductManagement: React.FC = () => {
             style={{
               border: "none",
               height: "2px",
-              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-              margin: "20px 0", // Adjust margin as needed
+              backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+              margin: "20px 0",
             }}
           />
           <div className="mb-8 ">

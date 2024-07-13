@@ -47,8 +47,8 @@ const FeaturedProducts = () => {
         style={{
           border: "none",
           height: "2px",
-          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)", // Replace colors with your gradient
-          margin: "20px 0", // Adjust margin as needed
+          backgroundImage: "linear-gradient(to right, #00FF00, #FFD700)",
+          margin: "20px 0",
         }}
       />
       <div className="flex flex-col my-5">
