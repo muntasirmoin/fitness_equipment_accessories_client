@@ -4,7 +4,7 @@
 
 - Client Site: https://github.com/muntasirmoin/fitness_equipment_accessories_client
 - Server Site : https://github.com/muntasirmoin/fitness_equipment_accessories_server
-- Live Link:
+- Live Link: https://fitness-equipment-accessories-client.vercel.app/
 
 ## Introduction
 
@@ -74,10 +74,6 @@ FitZone is an innovative platform designed to revolutionize of fitness journey. 
 - @types/react, @types/react-dom, @vitejs/plugin-react, autoprefixer, daisyui, eslint, eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-react-refresh, postcss, tailwindcss, vite
 
 ## Installation Guideline
-
-- Clone the github repository
-
-### Prerequisites
 
 ### Install dependency
 

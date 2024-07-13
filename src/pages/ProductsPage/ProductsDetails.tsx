@@ -25,7 +25,7 @@ const ProductsDetails = () => {
     stock: 0,
   });
 
-  // fetch(`http://localhost:3000/singleProduct/${selectId}`)
+  // fetch(`https://fitness-equipment-accessories-server.vercel.app/singleProduct/${selectId}`)
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -33,7 +33,7 @@ const ProductsDetails = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/singleProduct/${selectId}`,
+        `https://fitness-equipment-accessories-server.vercel.app/singleProduct/${selectId}`,
         {
           method: "GET",
           headers: {

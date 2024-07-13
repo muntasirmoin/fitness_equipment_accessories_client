@@ -26,7 +26,7 @@ const CheckOutPage: React.FC = () => {
     try {
       console.log("fetchUpdateProduct", productId, updatedStock);
       const response = await fetch(
-        `http://localhost:3000/products/update/${productId}`,
+        `https://fitness-equipment-accessories-server.vercel.app/products/update/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -78,13 +78,16 @@ const CheckOutPage: React.FC = () => {
       address !== ""
     ) {
       try {
-        const response = await fetch("http://localhost:3000/payment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(cartProductUser),
-        });
+        const response = await fetch(
+          "https://fitness-equipment-accessories-server.vercel.app/payment",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cartProductUser),
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to save cartProductUser");

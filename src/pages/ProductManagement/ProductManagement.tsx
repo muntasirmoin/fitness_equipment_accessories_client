@@ -34,12 +34,15 @@ const ProductManagement: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://fitness-equipment-accessories-server.vercel.app/products",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -69,7 +72,7 @@ const ProductManagement: React.FC = () => {
   const handleEditProduct = async (product: Product) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/products/${product._id}`,
+        `https://fitness-equipment-accessories-server.vercel.app/products/${product._id}`,
         {
           method: "PUT",
           headers: {
@@ -124,7 +127,7 @@ const ProductManagement: React.FC = () => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `http://localhost:3000/products/${productId}`,
+            `https://fitness-equipment-accessories-server.vercel.app/products/${productId}`,
             {
               method: "DELETE",
               headers: {
@@ -167,13 +170,16 @@ const ProductManagement: React.FC = () => {
 
   const handleAddProduct = async () => {
     try {
-      const response = await fetch("http://localhost:3000/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
-      });
+      const response = await fetch(
+        "https://fitness-equipment-accessories-server.vercel.app/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newProduct),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to save product");

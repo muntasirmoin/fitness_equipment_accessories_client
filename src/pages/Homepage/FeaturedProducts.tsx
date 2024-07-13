@@ -23,12 +23,15 @@ const FeaturedProducts = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3000/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://fitness-equipment-accessories-server.vercel.app/products",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
