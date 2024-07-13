@@ -1,6 +1,6 @@
 # Project Name
 
-FitZone
+# FitZone
 
 - Client Site: https://github.com/muntasirmoin/fitness_equipment_accessories_client
 - Server Site : https://github.com/muntasirmoin/fitness_equipment_accessories_server
